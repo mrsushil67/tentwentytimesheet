@@ -100,13 +100,7 @@ Login --
 "email": "user@tentwenty.com",
 "password": "tentwenty123",
 
-👨‍💻 Author
-
-Sushil Kumar
-Frontend Developer | React • TypeScript • Node.js
-📧 youremail@example.com
-
 ### 1️⃣ Clone the repository
 ```bash
 git https://github.com/mrsushil67/tentwentytimesheet.git
-cd timesheet-management-app
+cd tentwentytimesheet
