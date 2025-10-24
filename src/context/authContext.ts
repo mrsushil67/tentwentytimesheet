@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const login = (username: string, password: string) => {
+  const login = (username: string) => {
     const newUser: User = { username };
     setUser(newUser);
     localStorage.setItem('user', JSON.stringify(newUser));

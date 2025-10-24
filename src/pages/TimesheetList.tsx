@@ -38,9 +38,9 @@ const formatWeekRange = (dates: string[]): string => {
   return `${startDay} - ${endDay} ${month}, ${year}`;
 };
 
-const calculateDailyTotal = (tasks: Task[]): number => {
-  return tasks.reduce((sum, task) => sum + task.hours, 0);
-};
+// const calculateDailyTotal = (tasks: Task[]): number => {
+//   return tasks.reduce((sum, task) => sum + task.hours, 0);
+// };
 
 interface TaskRowProps {
   task: Task;
@@ -86,7 +86,7 @@ const TaskRow: React.FC<TaskRowProps> = ({ task, onEdit, onDelete }) => {
 
 
 const DailyTimesheetSection: React.FC<{ dayData: DailyTimesheet }> = ({ dayData }) => {
-  const totalHours = calculateDailyTotal(dayData.tasks);
+  // const totalHours = calculateDailyTotal(dayData.tasks);
   const [isModalOpen, setIsModalOpen] = useState(false);
   // Placeholder actions for the TaskRow component
   const handleEdit = () => console.log('Edit clicked');
@@ -106,7 +106,7 @@ const DailyTimesheetSection: React.FC<{ dayData: DailyTimesheet }> = ({ dayData 
   }) => {
     console.log("New entry submitted:", data);
 
-    const weekId = 1;
+    // const weekId = 1;
 
     const newEntry = {
       project: data.project,

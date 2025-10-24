@@ -116,7 +116,7 @@ export const addNewTimesheetEntry = async (
     console.log("timesheets : ", timesheets)
 
     let found = false;
-    let foundId = 0;
+    // let foundId = 0;
     const updatedTimesheets = timesheets.map((entry: any) => {
       if (entry.date === newEntry.date) {
         entry.tasks.push({
@@ -126,7 +126,7 @@ export const addNewTimesheetEntry = async (
           hours: newEntry.hours,
         });
         found = true;
-        foundId = entry.id
+        // foundId = entry.id
       }
       return entry;
     });

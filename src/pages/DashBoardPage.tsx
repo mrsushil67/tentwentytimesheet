@@ -11,7 +11,6 @@ const TimesheetsDashboard: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [itemsPerPage, setItemsPerPage] = useState<number>(5);
-    const [weeklyTimesheets, setWeeklyTimesheets] = useState<any[]>([]);
     const [totalPages, setTotalPages] = useState<number>(1);
     const [selectedWeek, setSelectedWeek] = useState<any | null>(null);
     const [statusFilter, setStatusFilter] = useState<string>("All");
@@ -50,7 +49,6 @@ const TimesheetsDashboard: React.FC = () => {
                 console.log("xxxxxx ", weeklySummaries)
                 setTimesheets(weeklySummaries);
                 setTotalPages(Math.ceil(weeklySummaries.length / itemsPerPage));
-                setWeeklyTimesheets(weeklySummaries);
             }
             setLoading(false);
         };
@@ -64,7 +62,6 @@ const TimesheetsDashboard: React.FC = () => {
             const result = await fetchTimesheets();
             if (result.success && result.data) {
                 const grouped = groupByWeek(result.data);
-                setWeeklyTimesheets(grouped);
                 setTotalPages(Math.ceil(grouped.length / itemsPerPage));
             }
             setLoading(false);
@@ -88,22 +85,11 @@ const TimesheetsDashboard: React.FC = () => {
     }, [filteredTimesheets, itemsPerPage]);
 
     console.log("TotalPages: ", totalPages)
-
-    const handleAction = (week: number, action: string) => {
-        console.log(`Action: ${action} for Week #${week}`);
-    };
-
     const handlePageChange = (page: number) => {
         if (page >= 1 && page <= totalPages) {
             setCurrentPage(page);
         }
     };
-
-    const handleItemsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setItemsPerPage(parseInt(e.target.value));
-        setCurrentPage(1);
-    };
-
 
     const handleStatusFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setStatusFilter(e.target.value);
@@ -190,7 +176,7 @@ const TimesheetsDashboard: React.FC = () => {
                             <Table
                                 timesheets={currentWeeks}
                                 loading={loading}
-                                handleActionClick={(week, action) => {
+                                handleActionClick={(week) => {
                                     const weekData = timesheets.find((w) => w.week === week);
                                     if (weekData) handleRowClick(weekData);
                                 }}
