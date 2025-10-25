@@ -6,7 +6,20 @@ interface User {
 }
 
 export const loginApi = async (email: string, password: string): Promise<User | undefined> => {
-  const res = await fetch("http://localhost:5000/users");
-  const users: User[] = await res.json();
-  return users.find(u => u.email === email && u.password === password);
+  const res = await fetch("https://tentwentyapi.onrender.com/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+
+  console.log(res);
+
+  if (!res.ok) {
+    console.error("Login failed");
+    return undefined;
+  }
+
+  const user: User = await res.json();
+  return user;
 };
+

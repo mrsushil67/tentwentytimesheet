@@ -46,7 +46,6 @@ const TimesheetsDashboard: React.FC = () => {
                     };
                 });
 
-                console.log("xxxxxx ", weeklySummaries)
                 setTimesheets(weeklySummaries);
                 setTotalPages(Math.ceil(weeklySummaries.length / itemsPerPage));
             }
@@ -78,13 +77,10 @@ const TimesheetsDashboard: React.FC = () => {
     });
 
 
-    console.log("Filtered Timesheets:", filteredTimesheets);
-
     useEffect(() => {
         setTotalPages(Math.ceil(filteredTimesheets.length / itemsPerPage));
     }, [filteredTimesheets, itemsPerPage]);
 
-    console.log("TotalPages: ", totalPages)
     const handlePageChange = (page: number) => {
         if (page >= 1 && page <= totalPages) {
             setCurrentPage(page);
@@ -108,12 +104,10 @@ const TimesheetsDashboard: React.FC = () => {
     const handleRowClick = async (weekData: any) => {
         try {
             setLoading(true);
-            console.log("Fetching data for week:", weekData.week);
 
             const result = await fetchWeeklyTimesheet(weekData.week);
 
             if (result.success && result.data) {
-                console.log("Weekly data fetched:", result.data);
 
                 setSelectedWeek({
                     ...weekData,

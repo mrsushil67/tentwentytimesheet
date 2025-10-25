@@ -14,7 +14,7 @@ export interface TimesheetEntry {
 }
 
 export const fetchTimesheetsApi = async (): Promise<TimesheetEntry[]> => {
-  const res = await fetch("http://localhost:5000/timesheets");
+  const res = await fetch("https://tentwentyapi.onrender.com/timesheets");
   if (!res.ok) throw new Error("Failed to fetch timesheets");
 
   const data: TimesheetEntry[] = await res.json();
@@ -26,7 +26,7 @@ export const fetchWeeklyTimesheet = async (
   weekId: number
 ): Promise<{ success: boolean; data: TimesheetEntry[] | null }> => {
   try {
-    const res = await fetch(`http://localhost:5000/timesheet/week/${weekId}`);
+    const res = await fetch(`https://tentwentyapi.onrender.com/timesheet/week/${weekId}`);
     if (!res.ok) throw new Error('Failed to fetch weekly timesheet');
 
     const data: TimesheetEntry[] = await res.json();
